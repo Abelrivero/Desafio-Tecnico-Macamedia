@@ -9,10 +9,12 @@ class Alumno extends Model
 {
     protected $table = 'alumnos';
 
+    protected $primaryKey = 'dni';
+
     protected $fillable = [
         'nombre',
         'apellido',
-        'dni',
+        'dni', 
         'carreraID',
         'telefono',
         'numeroLegajo',
@@ -24,7 +26,7 @@ class Alumno extends Model
         return $this->belongsTo(Estado::class);
     }
 
-    public function carrera(){
+    public function carreras(){
         return $this->belongsTo(Carrera::class);
     }
 

@@ -16,11 +16,11 @@ class Materia extends Model
         'horasCursado'
     ];
 
-    public function carrera(){
+    public function carrera() {
         return $this->belongsTo(Carrera::class);
     }
 
-    public function alumnos(){
+    public function alumnos() {
         return $this->hasMany(AlumnoMateria::class);
     }
 

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('telefono', 150);
             $table->string('numeroLegajo', 150);
             $table->foreignId('estadoID')->constrained('estados');
-            $table->foreignId('usuarioID')->constrained('users');
+            $table->foreignId('usuarioID')->nullable()->constrained('users');
             $table->timestamps();
             $table->softDeletes();
         });

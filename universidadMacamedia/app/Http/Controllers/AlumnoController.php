@@ -17,12 +17,13 @@ class AlumnoController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
+        
         $validated = $request->validate([
             'nombre' => ['string','required', 'max:20'],
             'apellido' => ['string','required', 'max:20'],
             'carreraID' => ['required', 'max:20'],
             'telefono' => ['string','required', 'max:10'],
+            'dni' => ['required', 'max:10'],
             'numeroLegajo' => ['string','required', 'max:20'],
             'estadoID' => ['required', 'max:20'],
             'usuarioID' => ['required', 'max:20'],
@@ -32,6 +33,7 @@ class AlumnoController extends Controller
             'nombre' => $request->nombre,
             'apellido' => $request->apellido,
             'telefono' => $request->telefono,
+            'dni' => $request->dni, 
             'numeroLegajo' => $request->numeroLegajo,
             'carreraID' => $request->carreraID,
             'estadoID' => $request->estadoID,
@@ -52,6 +54,7 @@ class AlumnoController extends Controller
             'nombre' => ['string','someting', 'max:20'],
             'apellido' => ['string','someting', 'max:20'],
             'telefono' => ['string','someting', 'max:20'],
+            'dni' => ['someting', 'max:10'], 
             'numeroLegajo' => ['string','someting', 'max:20'],
             'carreraID' => ['someting', 'max:20'],
             'estadoID' => ['someting', 'max:20'],

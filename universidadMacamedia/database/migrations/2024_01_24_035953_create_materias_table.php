@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre', 150);
             $table->foreignId('carreraID')->constrained('carreras');
-            $table->integer('duracion');
+            $table->string('duracion');
             $table->float('horasCursado');
             $table->timestamps();
             $table->softDeletes();
