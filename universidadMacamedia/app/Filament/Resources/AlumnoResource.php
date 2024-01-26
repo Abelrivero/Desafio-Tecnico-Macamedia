@@ -94,10 +94,10 @@ class AlumnoResource extends Resource
                 ->label('Numero de Legajo')
                 ->searchable(),
 
-                TextColumn::make('carreras.nombre')
+                TextColumn::make('carrerasAlumno.nombre')
                 ->label('Carrera'),
 
-                TextColumn::make('estado.nombre')
+                TextColumn::make('estadoAlumno.descripcion')
                 ->label('Estado'), 
             ])
             ->filters([

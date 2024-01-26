@@ -38,7 +38,7 @@ class MateriaResource extends Resource
                 Select::make('duracion')
                 ->label('Duracion')
                 ->options([
-                    'Anual' => 'Anul',
+                    'Anual' => 'Anual',
                     'Cuatrimestral' => 'Cuatrimestral'
                 ]),
 

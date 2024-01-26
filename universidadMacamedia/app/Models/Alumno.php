@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Alumno extends Model
 {
-    protected $table = 'alumnos';
+    use HasFactory;
+    
+    protected $table = 'alumno';
 
     protected $primaryKey = 'dni';
 
@@ -22,21 +25,22 @@ class Alumno extends Model
         'usuarioID'
     ];
 
-    public function estado(){
-        return $this->belongsTo(Estado::class);
+    public function estadoAlumno()
+    {
+        return $this->belongsTo(Estado::class, 'estadoID');
     }
 
-    public function carreras(){
-        return $this->belongsTo(Carrera::class);
+    public function carrerasAlumno(): BelongsTo
+    {
+        return $this->belongsTo(Carrera::class, 'carreraID');
     }
 
-    public function user(){
+    /* public function user(){
         return $this->belongsTo(User::class);
-    }
+    } */
 
-    public function materias(){
+    public function materiasAlumno(){
         return $this->hasMany(AlumnoMateria::class);
     }
 
-    use HasFactory;
 }
