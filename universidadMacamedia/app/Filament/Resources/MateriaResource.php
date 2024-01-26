@@ -68,7 +68,7 @@ class MateriaResource extends Resource
                 TextColumn::make('horasCursado')
                 ->label('Horas de Cursado'),
 
-                TextColumn::make('carrera.nombre')
+                TextColumn::make('carrerasMateria.nombre')
                 ->label('Carrera')
             ])
             ->filters([
