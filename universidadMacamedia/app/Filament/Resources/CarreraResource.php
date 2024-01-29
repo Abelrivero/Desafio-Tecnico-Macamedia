@@ -19,23 +19,26 @@ class CarreraResource extends Resource
 {
     protected static ?string $model = Carrera::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-document';
+
+    protected static ?string $navigationGroup = 'Panel Admin';
+
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('nombre')
-                ->label('Nombre')
-                ->required(),
-                
+                    ->label('Nombre')
+                    ->required(),
+
                 TextInput::make('duracion')
-                ->label('Duracion(años)')
-                ->numeric()
-                ->minValue(3)
-                ->maxValue(10)
-                ->required(),
-                
+                    ->label('Duracion(años)')
+                    ->numeric()
+                    ->minValue(3)
+                    ->maxValue(10)
+                    ->required(),
+
             ]);
     }
 
@@ -44,10 +47,10 @@ class CarreraResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nombre')
-                ->label('Nombre'),
+                    ->label('Nombre'),
 
                 TextColumn::make('duracion')
-                ->label('Duracion')
+                    ->label('Duracion')
             ])
             ->filters([
                 //
@@ -59,14 +62,14 @@ class CarreraResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -74,5 +77,5 @@ class CarreraResource extends Resource
             'create' => Pages\CreateCarrera::route('/create'),
             'edit' => Pages\EditCarrera::route('/{record}/edit'),
         ];
-    }    
+    }
 }

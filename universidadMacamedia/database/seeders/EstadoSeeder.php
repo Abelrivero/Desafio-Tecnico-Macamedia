@@ -22,5 +22,25 @@ class EstadoSeeder extends Seeder
             'descripcion' => 'Inactivo',
             'codigo' => 'ina',
         ]);
+
+        DB::table('estado')->insert([
+            'descripcion' => 'Aprobado',
+            'codigo' => 'apr',
+        ]);
+
+        DB::table('estado')->insert([
+            'descripcion' => 'Desaprobado',
+            'codigo' => 'des',
+        ]);
+
+        DB::table('estado')->insert([
+            'descripcion' => 'Regular',
+            'codigo' => 'reg',
+        ]);
+
+        DB::table('estado')->insert([
+            'descripcion' => 'Libre',
+            'codigo' => 'lib',
+        ]);
     }
 }

@@ -1,7 +1,9 @@
 <?php
 
 use App\Models\Alumno;
+use App\Models\AlumnoMateria;
 use App\Models\Carrera;
+use App\Models\CondicionAlumno;
 use App\Models\Estado;
 use App\Models\Materia;
 use App\Models\User;
@@ -82,19 +84,46 @@ Route::prefix('/universidad')->group(function () {
 
                 Route::delete('/baja/{alumnoID}', 'delete')->name('alumnoDelete');
             });
+            
+            Route::prefix('/Condicion')->group(function (){
+                    Route::controller(CondicionAlumno::class)->group(function () {
+                        Route::get('/listar', 'index')->name('condicionIndex');
+        
+                        Route::post('/alta', 'store')->name('condicionStore');
+        
+                        Route::get('/mostrar/{id}', 'show')->name('condicionShow');
+        
+                        Route::put('/modificar/{id}', 'edit')->name('condicionEdit');
+                    
+                        Route::delete('/baja/{id}', 'delete')->name('condicionDelete');
+                
+                    });
+            });
+
+            Route::prefix('/historico')->group(function (){
+                Route::controller(AlumnoMateria::class)->group(function () {
+                    Route::get('/listar', 'index')->name('historicoIndex');
+            
+                });
         });
+        });
+
         
         Route::prefix('/usuario')->group(function (){
             Route::controller(User::class)->group(function () {
-                Route::get('/listar', 'index')->name('productoIndex');
-                Route::post('/alta', 'store')->name('productoStore');
+                Route::get('/listar', 'index')->name('userIndex');
 
-                Route::put('/modificar/{ProductoID}', 'edit')->name('productoEdit');
-                Route::put('/modificar/{ProductoID}', 'update')->name('productoUpdate');
+                Route::post('/alta', 'store')->name('userStore');
+
+                Route::get('/mostrar/{userID}', 'show')->name('userShow');
+
+                Route::put('/modificar/{userID}', 'edit')->name('userEdit');
             
-                Route::delete('/baja/{ProductoID}', 'destroy')->name('productoDestroy');
+                Route::delete('/baja/{userID}', 'delete')->name('userDelete');
         
             });
         });
+
+        
     });
 });

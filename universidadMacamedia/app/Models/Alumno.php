@@ -39,8 +39,8 @@ class Alumno extends Model
         return $this->belongsTo(User::class);
     } */
 
-    public function materiasAlumno(){
-        return $this->hasMany(AlumnoMateria::class);
+    public function condicionAlumno(){
+        return $this->hasMany(CondicionAlumno::class);
     }
 
 }

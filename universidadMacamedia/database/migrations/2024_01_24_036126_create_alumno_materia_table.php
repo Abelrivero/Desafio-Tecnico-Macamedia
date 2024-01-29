@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('alumnoID')->constrained('alumno','dni');
             $table->foreignId('materiaID')->constrained('materia');
+            $table->foreignId('estadoID')->constrained('estado');
             $table->date('fecha');
             $table->timestamps();
             $table->softDeletes();
