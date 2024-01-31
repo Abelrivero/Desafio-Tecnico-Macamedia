@@ -18,7 +18,7 @@ class AlumnoMateriaResource extends Resource
 {
     protected static ?string $model = AlumnoMateria::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
     protected static ?string $navigationLabel = 'Historico Alumno';
 
@@ -39,8 +39,16 @@ class AlumnoMateriaResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('alumnos.dni')
+                ->label('DNI')
+                ->searchable(),
+
                 TextColumn::make('alumnos.nombre')
                 ->label('Alumno')
+                ->searchable(),
+
+                TextColumn::make('alumnos.apellido')
+                ->label('Apellido')
                 ->searchable(),
 
                 TextColumn::make('materias.nombre')

@@ -43,4 +43,6 @@ class Alumno extends Model
         return $this->hasMany(CondicionAlumno::class);
     }
 
+    
+
 }

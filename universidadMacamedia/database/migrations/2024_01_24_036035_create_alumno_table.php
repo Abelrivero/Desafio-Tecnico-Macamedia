@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('numeroLegajo', 150);
             $table->foreignId('estadoID')->constrained('estado');
             $table->foreignId('usuarioID')->nullable()->constrained('users');
+            $table->string('full_name')->virtualAs('concat(nombre, \' \', apellido)');
             $table->timestamps();
             $table->softDeletes();
         });

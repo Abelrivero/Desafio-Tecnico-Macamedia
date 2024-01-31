@@ -18,6 +18,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 use function Laravel\Prompts\select;
 
@@ -70,7 +71,7 @@ class AlumnoResource extends Resource
                 
                 Select::make('estadoID')
                 ->label('Estado')
-                ->options(Estado::all()->pluck('descripcion', 'id')),
+                ->options(Estado::where('id', '<', '3')->pluck('descripcion', 'id')),
 
             ]);
     }
@@ -116,6 +117,7 @@ class AlumnoResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
+                ExportBulkAction::make(),
             ]);
     }
     
