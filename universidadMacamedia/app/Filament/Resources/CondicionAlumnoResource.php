@@ -40,7 +40,8 @@ class CondicionAlumnoResource extends Resource
             ->schema([
                 Select::make('alumnoID')
                 ->label('Alumno')
-                ->relationship('condicionAlumno', 'full_name')
+                /* ->relationship('condicionAlumno', 'full_name') */
+                ->options(Alumno::all()->pluck('full_name', 'dni'))
                 ->searchable()
                 ->required()
                 ->reactive()
