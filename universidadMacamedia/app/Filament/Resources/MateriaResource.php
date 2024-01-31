@@ -23,7 +23,10 @@ class MateriaResource extends Resource
 {
     protected static ?string $model = Materia::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard';
+
+    protected static ?string $navigationGroup = 'Panel Admin';
+
 
     public static function form(Form $form): Form
 
@@ -68,7 +71,7 @@ class MateriaResource extends Resource
                 TextColumn::make('horasCursado')
                 ->label('Horas de Cursado'),
 
-                TextColumn::make('carrera.nombre')
+                TextColumn::make('carrerasMateria.nombre')
                 ->label('Carrera')
             ])
             ->filters([

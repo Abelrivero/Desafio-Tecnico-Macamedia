@@ -17,7 +17,7 @@ class Materia extends Model
     ];
 
     public function carrerasMateria() {
-        return $this->belongsTo(Carrera::class);
+        return $this->belongsTo(Carrera::class, 'carreraID');
     }
 
     public function alumnosMateria() {

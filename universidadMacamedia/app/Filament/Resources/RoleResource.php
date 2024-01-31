@@ -2,10 +2,11 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\EstadoResource\Pages;
-use App\Filament\Resources\EstadoResource\RelationManagers;
-use App\Models\Estado;
+use App\Filament\Resources\RoleResource\Pages;
+use App\Filament\Resources\RoleResource\RelationManagers;
+use Spatie\Permission\Models\Role;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -15,25 +16,22 @@ use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class EstadoResource extends Resource
+class RoleResource extends Resource
 {
-    protected static ?string $model = Estado::class;
+    protected static ?string $model = Role::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-cog';
 
-    protected static ?string $navigationGroup = 'Panel Admin';
-
+    protected static ?string $navigationGroup = 'Usuarios';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('descripcion')
-                ->label('Descripcion'),
-
-                TextInput::make('codigo')
-                ->label('Codigo'),
-
+                TextInput::make('name')
+                ->required()
+                ->maxLength(30)
+                ->unique(ignoreRecord: true),
             ]);
     }
 
@@ -41,11 +39,7 @@ class EstadoResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('descripcion')
-                ->label('Descripcion'),
-
-                TextColumn::make('codigo')
-                ->label('Codigo')
+                TextColumn::make('name')
             ])
             ->filters([
                 //
@@ -68,9 +62,9 @@ class EstadoResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListEstados::route('/'),
-            'create' => Pages\CreateEstado::route('/create'),
-            'edit' => Pages\EditEstado::route('/{record}/edit'),
+            'index' => Pages\ListRoles::route('/'),
+            'create' => Pages\CreateRole::route('/create'),
+            'edit' => Pages\EditRole::route('/{record}/edit'),
         ];
     }    
 }

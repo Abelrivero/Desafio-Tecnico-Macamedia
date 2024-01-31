@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\EstadoResource\Pages;
-use App\Filament\Resources\EstadoResource\RelationManagers;
-use App\Models\Estado;
+use App\Filament\Resources\PermissionResource\Pages;
+use App\Filament\Resources\PermissionResource\RelationManagers;
+use Spatie\Permission\Models\Permission;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
@@ -15,25 +15,26 @@ use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class EstadoResource extends Resource
+
+
+class PermissionResource extends Resource
 {
-    protected static ?string $model = Estado::class;
+    protected static ?string $model = Permission::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-lock-closed';
 
-    protected static ?string $navigationGroup = 'Panel Admin';
-
+    protected static ?string $navigationGroup = 'Usuarios';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('descripcion')
-                ->label('Descripcion'),
+                TextInput::make('name')
+                ->required()
+                ->maxLength(30)
+                ->unique(ignoreRecord: true),
 
-                TextInput::make('codigo')
-                ->label('Codigo'),
-
+                
             ]);
     }
 
@@ -41,11 +42,7 @@ class EstadoResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('descripcion')
-                ->label('Descripcion'),
-
-                TextColumn::make('codigo')
-                ->label('Codigo')
+                TextColumn::make('name')
             ])
             ->filters([
                 //
@@ -68,9 +65,9 @@ class EstadoResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListEstados::route('/'),
-            'create' => Pages\CreateEstado::route('/create'),
-            'edit' => Pages\EditEstado::route('/{record}/edit'),
+            'index' => Pages\ListPermissions::route('/'),
+            'create' => Pages\CreatePermission::route('/create'),
+            'edit' => Pages\EditPermission::route('/{record}/edit'),
         ];
     }    
 }

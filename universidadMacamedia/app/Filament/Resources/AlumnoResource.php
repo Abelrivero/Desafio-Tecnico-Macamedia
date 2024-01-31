@@ -15,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -24,7 +25,9 @@ class AlumnoResource extends Resource
 {
     protected static ?string $model = Alumno::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-user';
+
+    protected static ?string $navigationGroup = 'Panel Admin';
 
     public static function form(Form $form): Form
     {
@@ -78,7 +81,8 @@ class AlumnoResource extends Resource
             ->columns([
                 TextColumn::make('nombre')
                 ->label('Nombre')
-                ->searchable(),
+                ->searchable()
+                ->sortable(),
 
                 TextColumn::make('apellido')
                 ->label('Apellido'),
@@ -92,16 +96,20 @@ class AlumnoResource extends Resource
 
                 TextColumn::make('numeroLegajo')
                 ->label('Numero de Legajo')
-                ->searchable(),
+                ->searchable()
+                ->sortable(),
 
                 TextColumn::make('carrerasAlumno.nombre')
-                ->label('Carrera'),
+                ->label('Carrera')
+                ->searchable(),
 
                 TextColumn::make('estadoAlumno.descripcion')
                 ->label('Estado'), 
             ])
+            
+
             ->filters([
-                //
+                SelectFilter::make('estadoAlumno')->relationship('estadoAlumno', 'descripcion')
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
