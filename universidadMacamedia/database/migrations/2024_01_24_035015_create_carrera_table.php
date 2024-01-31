@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('alumno_materias', function (Blueprint $table) {
+        Schema::create('carrera', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('alumnoID')->constrained('alumnos','dni');
-            $table->foreignId('materiaID')->constrained('materias');
-            $table->date('fecha');
+            $table->string('nombre', 150);
+            $table->integer('duracion');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('alumno_materias');
+        Schema::dropIfExists('carrera');
     }
 };

@@ -4,15 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Alumno extends Model
 {
-    protected $table = 'alumnos';
+    use HasFactory;
+    
+    protected $table = 'alumno';
+
+    protected $primaryKey = 'dni';
 
     protected $fillable = [
         'nombre',
         'apellido',
-        'dni',
+        'dni', 
         'carreraID',
         'telefono',
         'numeroLegajo',
@@ -20,21 +25,22 @@ class Alumno extends Model
         'usuarioID'
     ];
 
-    public function estado(){
-        return $this->belongsTo(Estado::class);
+    public function estadoAlumno()
+    {
+        return $this->belongsTo(Estado::class, 'estadoID');
     }
 
-    public function carrera(){
-        return $this->belongsTo(Carrera::class);
+    public function carrerasAlumno(): BelongsTo
+    {
+        return $this->belongsTo(Carrera::class, 'carreraID');
     }
 
-    public function user(){
+    /* public function user(){
         return $this->belongsTo(User::class);
+    } */
+
+    public function condicionAlumno(){
+        return $this->hasMany(CondicionAlumno::class);
     }
 
-    public function materias(){
-        return $this->hasMany(AlumnoMateria::class);
-    }
-
-    use HasFactory;
 }

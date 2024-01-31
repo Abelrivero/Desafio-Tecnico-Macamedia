@@ -4,10 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-use function PHPSTORM_META\map;
-
-class AlumnoMateria extends Model
+class CondicionAlumno extends Model
 {
     use HasFactory;
 
@@ -20,15 +19,15 @@ class AlumnoMateria extends Model
         'fecha'
     ];
 
-    public function materias(){
-        return $this->belongsTo(Materia::class, 'materiaID');
-    }
-
-    public function alumnos(){
+    public function condicionAlumno(){
         return $this->belongsTo(Alumno::class, 'alumnoID');
     }
 
-    public function estadoMateria(){
+    public function condicionMateria(){
+        return $this->belongsTo(Materia::class, 'materiaID');
+    }
+
+    public function condicionEstado(){
         return $this->belongsTo(Estado::class, 'estadoID');
     }
 

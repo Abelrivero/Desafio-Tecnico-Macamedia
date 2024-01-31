@@ -9,14 +9,18 @@ class Estado extends Model
 {
     use HasFactory;
 
-    protected $table = 'estados';
+    protected $table = 'estado';
 
     protected $fillable = [
         'descripcion',
         'codigo'
     ];
 
-    public function alumnoE(){
+    public function alumnoEstado(){
         return $this->hasMany(Alumno::class);
+    }
+
+    public function alumnosMaterias(){
+        return $this->hasMany(AlumnoMateria::class);
     }
 }
