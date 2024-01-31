@@ -16,7 +16,11 @@ class Estado extends Model
         'codigo'
     ];
 
-    public function alumnoE(){
+    public function alumnoEstado(){
         return $this->hasMany(Alumno::class);
+    }
+
+    public function alumnosMaterias(){
+        return $this->hasMany(AlumnoMateria::class);
     }
 }

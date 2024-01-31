@@ -25,7 +25,9 @@ class AlumnoResource extends Resource
 {
     protected static ?string $model = Alumno::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-user';
+
+    protected static ?string $navigationGroup = 'Panel Admin';
 
     public static function form(Form $form): Form
     {
@@ -98,7 +100,8 @@ class AlumnoResource extends Resource
                 ->sortable(),
 
                 TextColumn::make('carrerasAlumno.nombre')
-                ->label('Carrera'),
+                ->label('Carrera')
+                ->searchable(),
 
                 TextColumn::make('estadoAlumno.descripcion')
                 ->label('Estado'), 
